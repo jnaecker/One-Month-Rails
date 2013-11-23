@@ -77,3 +77,17 @@ git push -u origin master
 git commit -m "Message"
 git push
 </code></pre>
+
+<h2>Creating Your Homepage</h2>
+
+<p>Navigate to your <code>pinteresting</code> folder and start the server with</p>
+
+<pre><code>rails server
+</code></pre>
+
+<p>You can see the result at <a href="http://0.0.0.0:3000">http://0.0.0.0:3000</a>.  To make a new page, run</p>
+
+<pre><code>rails generate controller pages home
+</code></pre>
+
+<p>This page is viewable at <a href="http://0.0.0.0:3000/pages/home">http://0.0.0.0:3000/pages/home</a>.  To edit it, navigate to <code>pinteresting/app/views/pages/home.html.erb</code>.  You can then make any edits you want to the page contents.</p>

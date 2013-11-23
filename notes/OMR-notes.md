@@ -69,4 +69,14 @@ The typical workflow is as follows:  After making some changes to our files and 
 	git commit -m "Message"
 	git push
 
+## Creating Your Homepage
 
+Navigate to your `pinteresting` folder and start the server with
+
+	rails server
+	
+You can see the result at [http://0.0.0.0:3000](http://0.0.0.0:3000).  To make a new page, run
+
+	rails generate controller pages home
+	
+This page is viewable at [http://0.0.0.0:3000/pages/home](http://0.0.0.0:3000/pages/home).  To edit it, navigate to `pinteresting/app/views/pages/home.html.erb`.  You can then make any edits you want to the page contents.
