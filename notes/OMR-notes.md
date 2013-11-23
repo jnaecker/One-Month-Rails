@@ -80,3 +80,9 @@ You can see the result at [http://0.0.0.0:3000](http://0.0.0.0:3000).  To make a
 	rails generate controller pages home
 	
 This page is viewable at [http://0.0.0.0:3000/pages/home](http://0.0.0.0:3000/pages/home).  To edit it, navigate to `pinteresting/app/views/pages/home.html.erb`.  You can then make any edits you want to the page contents.
+
+## Setting the Root Path
+
+Find routes in the file `config/routes.rb`.  Currently, this says that there is a page at http://0.0.0.0:3000/pages/home.  To make the default landing page point here, chance the second line of the routes file to `root pages#home`.
+
+
