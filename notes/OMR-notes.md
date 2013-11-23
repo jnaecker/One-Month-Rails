@@ -49,3 +49,14 @@ Suppose we accidentally delete something important.  To get back the last commit
 	git checkout -f
 	
 You can checkout a specific file, but the `-f` option just checks out everything.
+
+## Github Setup
+
+Make sure you have an account at [Github](github.com).  To make it faster to push and pull from Github, add an ssh key by following the directions [here](https://help.github.com/articles/generating-ssh-keys).
+
+On Github, create a new repository and give it a useful name.  Then follow the instructions on the page to push your existing repo to Github:
+
+	git remote add origin git@github.com:jnaecker/One-Month-Rails.git
+	git push -u origin master
+	
+
