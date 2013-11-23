@@ -100,7 +100,18 @@ Third, add a route for this new page.  In `config/routes.rb`, add this line:
 
 	get "about" => "pages#about"
 	
+## Embedded Ruby
 
-	
+Normally you would create a link in html like so:
 
+	<a href="link.com">here<a>
 	
+However, note that our homepage is actually an .erb file, standing for Embedded Ruby.  This means we can add small snippets of Ruby to what otherwise looks like an html file.   In general embedded Ruby occurs between these tags:
+
+	<%= [ruby function] %>
+	
+To add make a link, for example:
+
+	<%= link_to "here", "#" %>
+
+This calls the Ruby function `link_to` with two arguments.
