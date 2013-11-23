@@ -38,3 +38,14 @@ from the top level of the directory. Then commit the files with
 	git commit -am "Initial commit"
 	
 The `-m` option allows to you add a message.  The `-a` option tells git to automatically stage deleted to modified files.
+
+To see if you have files that are modified or staged, run
+
+	git status
+	
+Suppose we accidentally delete something important.  To get back the last committed version of the directory, run
+
+	git add .
+	git checkout -f
+	
+You can checkout a specific file, but the `-f` option just checks out everything.

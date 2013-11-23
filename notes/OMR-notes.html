@@ -17,3 +17,42 @@
 </code></pre>
 
 <p>The app will be available by default on your local machine at http://localhost:3000/.  To quit the server, enter <code>cmd-C</code> at the command line.</p>
+
+<h2>Git Setup</h2>
+
+<p>You should already have git installed and configured from the setup.  Check that your username and email are set with </p>
+
+<pre><code>git config -l
+</code></pre>
+
+<p>To start your git repo, navigate to the desired folder and run</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>To tell git to ignore certain files, add those filenames to the .gitignore file at the top of the directly. It's recommended to add the .DS_Store file here, for example.</p>
+
+<p>To stage files, run</p>
+
+<pre><code>git add .
+</code></pre>
+
+<p>from the top level of the directory. Then commit the files with </p>
+
+<pre><code>git commit -am "Initial commit"
+</code></pre>
+
+<p>The <code>-m</code> option allows to you add a message.  The <code>-a</code> option tells git to automatically stage deleted to modified files.</p>
+
+<p>To see if you have files that are modified or staged, run</p>
+
+<pre><code>git status
+</code></pre>
+
+<p>Suppose we accidentally delete something important.  To get back the last committed version of the directory, run</p>
+
+<pre><code>git add .
+git checkout -f
+</code></pre>
+
+<p>You can checkout a specific file, but the <code>-f</code> option just checks out everything.</p>
