@@ -91,3 +91,24 @@ git push
 </code></pre>
 
 <p>This page is viewable at <a href="http://0.0.0.0:3000/pages/home">http://0.0.0.0:3000/pages/home</a>.  To edit it, navigate to <code>pinteresting/app/views/pages/home.html.erb</code>.  You can then make any edits you want to the page contents.</p>
+
+<h2>Setting the Root Path</h2>
+
+<p>Find routes in the file <code>config/routes.rb</code>.  Currently, this says that there is a page at http://0.0.0.0:3000/pages/home.  To make the default landing page point here, chance the second line of the routes file to <code>root pages#home</code>.</p>
+
+<h2>Creating More Pages</h2>
+
+<p>There are three steps to creating a new page for your app (in this case an about page):</p>
+
+<p>First, add a new action in the controller.  In <code>apps/controllers/pages_controller.rb</code> add</p>
+
+<pre><code>def about
+end
+</code></pre>
+
+<p>Second, add the content for this page in the view.  Create the file <code>app/views/pages/about.html.erb</code> and then add some html.</p>
+
+<p>Third, add a route for this new page.  In <code>config/routes.rb</code>, add this line:</p>
+
+<pre><code>get "about" =&gt; "pages#about"
+</code></pre>

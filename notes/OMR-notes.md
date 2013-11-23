@@ -85,4 +85,22 @@ This page is viewable at [http://0.0.0.0:3000/pages/home](http://0.0.0.0:3000/pa
 
 Find routes in the file `config/routes.rb`.  Currently, this says that there is a page at http://0.0.0.0:3000/pages/home.  To make the default landing page point here, chance the second line of the routes file to `root pages#home`.
 
+## Creating More Pages
 
+There are three steps to creating a new page for your app (in this case an about page):
+
+First, add a new action in the controller.  In `apps/controllers/pages_controller.rb` add
+
+	def about
+	end
+	
+Second, add the content for this page in the view.  Create the file `app/views/pages/about.html.erb` and then add some html.
+
+Third, add a route for this new page.  In `config/routes.rb`, add this line:
+
+	get "about" => "pages#about"
+	
+
+	
+
+	
