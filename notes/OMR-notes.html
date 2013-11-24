@@ -228,3 +228,54 @@ end
     &lt;p&gt;Sign up &lt;%=  link_to "here", "#" %&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
+
+<h4>Buttons</h4>
+
+<p>You can add buttons as specified on the Bootstrap website:</p>
+
+<pre><code>&lt;button type="button" class="btn btn-default"&gt;Default&lt;/button&gt;
+</code></pre>
+
+<p>But the <code>link_to</code> function also allows takes an argument <code>class</code> that allows you to make a button another way:</p>
+
+<pre><code>&lt;p&gt;Click here to &lt;%= link_to "sign up", "#" , class: "btn btn-primary btn-lg" %&gt;&lt;/p&gt;
+</code></pre>
+
+<h3>Customizing Bootstrap</h3>
+
+<p>You can edit the color and appearance by directly editing the CSS, but you can also add <em>LESS</em> variables in your <code>bootstrap_and_customization.css.scss</code> file, above the <code>@import</code> line.  These variables are listed <a href="http://getbootstrap.com/customize/#less-variables">here</a>.  Note that they start with <code>@</code>, but since we are using the bootstrap gem, all of these will start with <code>$</code> instead.</p>
+
+<h4>Color</h4>
+
+<p>Change the background color:</p>
+
+<pre><code>$body-bg: red;
+</code></pre>
+
+<p>The basic colors are a bit to intense, so recommend checking out <a href="http://flatuicolors.com/">http://flatuicolors.com/</a>.  Clicking a color copies the hex code for that color to your clipbaord</p>
+
+<pre><code>$body-bg: #3498db;
+</code></pre>
+
+<p>Navbar background color and link color:</p>
+
+<pre><code>$navbar-default-bg: #2980b9;
+$navbar-default-link-color: white;
+</code></pre>
+
+<p>Jumbotron background color:</p>
+
+<pre><code>$jumbotron-bg: white;
+</code></pre>
+
+<h4>Fixed Navbar to Top</h4>
+
+<p>You can change the <code>class</code> attribute of your navbar to make it fixed to the top of the page:</p>
+
+<pre><code>&lt;nav class="navbar navbar-default navbar-fixed-top" role="navigation"&gt;
+</code></pre>
+
+<p>Note that you'll have to add padding to the body of your pages now; otherwise the navbar will sit on top of some of your content.  This can be controlled through CSS as welll, by adding the following to your <code>bootstrap_and_customization.css.scss</code> file:</p>
+
+<pre><code>body { padding-top: 70px; }
+</code></pre>

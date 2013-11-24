@@ -202,3 +202,50 @@ To get the Jumbotron look on your homepage, wrap the header and other content yo
 		<p>Sign up <%=	link_to "here", "#" %>.</p>
 	</div>
 
+#### Buttons
+
+You can add buttons as specified on the Bootstrap website:
+
+	<button type="button" class="btn btn-default">Default</button>
+
+But the `link_to` function also allows takes an argument `class` that allows you to make a button another way:
+
+	<p>Click here to <%= link_to "sign up", "#" , class: "btn btn-primary btn-lg" %></p>
+
+### Customizing Bootstrap
+
+You can edit the color and appearance by directly editing the CSS, but you can also add *LESS* variables in your `bootstrap_and_customization.css.scss` file, above the `@import` line.  These variables are listed [here](http://getbootstrap.com/customize/#less-variables).  Note that they start with `@`, but since we are using the bootstrap gem, all of these will start with `$` instead.
+
+#### Color
+
+Change the background color:
+
+	$body-bg: red;
+	
+The basic colors are a bit to intense, so recommend checking out [http://flatuicolors.com/](http://flatuicolors.com/).  Clicking a color copies the hex code for that color to your clipbaord
+
+	$body-bg: #3498db;
+	
+Navbar background color and link color:
+	
+	$navbar-default-bg: #2980b9;
+	$navbar-default-link-color: white;
+
+Jumbotron background color:
+
+	$jumbotron-bg: white;
+	
+#### Fixed Navbar to Top
+
+You can change the `class` attribute of your navbar to make it fixed to the top of the page:
+	
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	
+Note that you'll have to add padding to the body of your pages now; otherwise the navbar will sit on top of some of your content.  This can be controlled through CSS as welll, by adding the following to your `bootstrap_and_customization.css.scss` file:
+
+	body { padding-top: 70px; }
+
+
+
+	
+	
