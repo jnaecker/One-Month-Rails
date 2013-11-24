@@ -235,7 +235,7 @@ Jumbotron background color:
 
 	$jumbotron-bg: white;
 	
-#### Fixed Navbar to Top
+#### Customizing the Navbar
 
 You can change the `class` attribute of your navbar to make it fixed to the top of the page:
 	
@@ -245,7 +245,46 @@ Note that you'll have to add padding to the body of your pages now; otherwise th
 
 	body { padding-top: 70px; }
 
-
-
+You can also put all of the navbar contents inside of a container class to push them away from the page edge slightly.  This makes the navbar more readable, especially on large screens.  To do this, just inside the `<nav>` tags, put
 	
+	<div class = "container">
+	<\div><!-- ./container -->
+	
+The `<!-- >` syntax is an html comment, in this case reminding us that the div ending there is the container.
+	
+To have the brand link on the left work properly, replace that line in the `_header.html.eb` file with
+
+	<%= link_to "Pinteresting", root_path, class: "navbar-brand" %>
+
+Note the importance of the `class: navbar-brand` argument.  Without it, the "Pinteresting Text" will be too small.  Also, note that we can make the brand text stand out a little more by making it bold.  The preferred way to do this is overriding the bootstrap CSS by adding
+
+	.navbar-brand {
+		font-weight: bold;
+	}
+
+below the `@import bootstrap` line.
+
+#### Adding a Center Class
+
+In your `.scss` file, you can add
+
+	.center {
+		text-align: center;
+	}
+
+This creates a new class that we can add to any of our html elements.  As with the `navbar-brand` customization above, this has to be put *after* the `@import bootstrap` line, since we are overriding bootstrap's default css.  Note that we have to do it this way because there is no SASS/LESS variable for what we are trying to achieve.
+
+To center the contents of our homepage jumbotron, change the jumbotron opening tag to 
+
+	<div class="jumbotron center">
+	
+#### Customizing Fonts
+
+You can explore fonts on [Google Fonts](http://www.google.com/fonts).  Just select the fonts you want, then hit "Use" and copy the @import code.  Put this code at the top of your `.scss` file:
+
+	@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+	
+You'll need to set the `font-family` variable with your new font at the beginning:
+
+	$font-family-sans-serif: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	

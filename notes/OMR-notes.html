@@ -268,7 +268,7 @@ $navbar-default-link-color: white;
 <pre><code>$jumbotron-bg: white;
 </code></pre>
 
-<h4>Fixed Navbar to Top</h4>
+<h4>Customizing the Navbar</h4>
 
 <p>You can change the <code>class</code> attribute of your navbar to make it fixed to the top of the page:</p>
 
@@ -278,4 +278,54 @@ $navbar-default-link-color: white;
 <p>Note that you'll have to add padding to the body of your pages now; otherwise the navbar will sit on top of some of your content.  This can be controlled through CSS as welll, by adding the following to your <code>bootstrap_and_customization.css.scss</code> file:</p>
 
 <pre><code>body { padding-top: 70px; }
+</code></pre>
+
+<p>You can also put all of the navbar contents inside of a container class to push them away from the page edge slightly.  This makes the navbar more readable, especially on large screens.  To do this, just inside the <code>&lt;nav&gt;</code> tags, put</p>
+
+<pre><code>&lt;div class = "container"&gt;
+&lt;\div&gt;&lt;!-- ./container --&gt;
+</code></pre>
+
+<p>The <code>&lt;!-- &gt;</code> syntax is an html comment, in this case reminding us that the div ending there is the container.</p>
+
+<p>To have the brand link on the left work properly, replace that line in the <code>_header.html.eb</code> file with</p>
+
+<pre><code>&lt;%= link_to "Pinteresting", root_path, class: "navbar-brand" %&gt;
+</code></pre>
+
+<p>Note the importance of the <code>class: navbar-brand</code> argument.  Without it, the "Pinteresting Text" will be too small.  Also, note that we can make the brand text stand out a little more by making it bold.  The preferred way to do this is overriding the bootstrap CSS by adding</p>
+
+<pre><code>.navbar-brand {
+    font-weight: bold;
+}
+</code></pre>
+
+<p>below the <code>@import bootstrap</code> line.</p>
+
+<h4>Adding a Center Class</h4>
+
+<p>In your <code>.scss</code> file, you can add</p>
+
+<pre><code>.center {
+    text-align: center;
+}
+</code></pre>
+
+<p>This creates a new class that we can add to any of our html elements.  As with the <code>navbar-brand</code> customization above, this has to be put <em>after</em> the <code>@import bootstrap</code> line, since we are overriding bootstrap's default css.  Note that we have to do it this way because there is no SASS/LESS variable for what we are trying to achieve.</p>
+
+<p>To center the contents of our homepage jumbotron, change the jumbotron opening tag to </p>
+
+<pre><code>&lt;div class="jumbotron center"&gt;
+</code></pre>
+
+<h4>Customizing Fonts</h4>
+
+<p>You can explore fonts on <a href="http://www.google.com/fonts">Google Fonts</a>.  Just select the fonts you want, then hit "Use" and copy the @import code.  Put this code at the top of your <code>.scss</code> file:</p>
+
+<pre><code>@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+</code></pre>
+
+<p>You'll need to set the <code>font-family</code> variable with your new font at the beginning:</p>
+
+<pre><code>$font-family-sans-serif: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 </code></pre>
