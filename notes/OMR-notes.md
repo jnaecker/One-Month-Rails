@@ -114,4 +114,26 @@ To add make a link, for example:
 
 	<%= link_to "here", "#" %>
 
-This calls the Ruby function `link_to` with two arguments.
+This calls the Ruby function `link_to` with two arguments.\
+
+## Creating Navigation Links
+
+The line
+	
+	get "about" => "pages#about"
+	
+in our `config/routes.rb` creates the variable `about_path`.  We can use this to link from our home page to the about page by adding
+
+	<%= link_to "about", about_path %>
+	
+to our `home.html.erb`.   We could add a similar link to the about page back the home page.  We could even add both links to the top of both pages to have a consistent menu of links across pages.
+
+However, maintenance of this link set can get annoying, since we have the same set of links copied in different pages.  There is a centralized way to do this: the file `app/views/layouts/application.html.erb` contains information that is shared by all pages in our app.  For example, you'll note the html `<title>Pinteresting</title>`, which gives each page the same title.
+
+In the body of this file, we can add
+
+	<%= link_to "Home", root_path %>
+	<%= link_to "About Us", about_path %>
+	
+This will add the given links to every page in our app.
+	

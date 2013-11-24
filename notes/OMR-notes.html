@@ -112,3 +112,46 @@ end
 
 <pre><code>get "about" =&gt; "pages#about"
 </code></pre>
+
+<h2>Embedded Ruby</h2>
+
+<p>Normally you would create a link in html like so:</p>
+
+<pre><code>&lt;a href="link.com"&gt;here&lt;a&gt;
+</code></pre>
+
+<p>However, note that our homepage is actually an .erb file, standing for Embedded Ruby.  This means we can add small snippets of Ruby to what otherwise looks like an html file.   In general embedded Ruby occurs between these tags:</p>
+
+<pre><code>&lt;%= [ruby function] %&gt;
+</code></pre>
+
+<p>To add make a link, for example:</p>
+
+<pre><code>&lt;%= link_to "here", "#" %&gt;
+</code></pre>
+
+<p>This calls the Ruby function <code>link_to</code> with two arguments.\</p>
+
+<h2>Creating Navigation Links</h2>
+
+<p>The line</p>
+
+<pre><code>get "about" =&gt; "pages#about"
+</code></pre>
+
+<p>in our <code>config/routes.rb</code> creates the variable <code>about_path</code>.  We can use this to link from our home page to the about page by adding</p>
+
+<pre><code>&lt;%= link_to "about", about_path %&gt;
+</code></pre>
+
+<p>to our <code>home.html.erb</code>.   We could add a similar link to the about page back the home page.  We could even add both links to the top of both pages to have a consistent menu of links across pages.</p>
+
+<p>However, maintenance of this link set can get annoying, since we have the same set of links copied in different pages.  There is a centralized way to do this: the file <code>app/views/layouts/application.html.erb</code> contains information that is shared by all pages in our app.  For example, you'll note the html <code>&lt;title&gt;Pinteresting&lt;/title&gt;</code>, which gives each page the same title.</p>
+
+<p>In the body of this file, we can add</p>
+
+<pre><code>&lt;%= link_to "Home", root_path %&gt;
+&lt;%= link_to "About Us", about_path %&gt;
+</code></pre>
+
+<p>This will add the given links to every page in our app.</p>
