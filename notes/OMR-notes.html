@@ -78,7 +78,9 @@ git commit -m "Message"
 git push
 </code></pre>
 
-<h2>Creating Your Homepage</h2>
+<h2>Creating Pages</h2>
+
+<h3>Creating Your Homepage</h3>
 
 <p>Navigate to your <code>pinteresting</code> folder and start the server with</p>
 
@@ -92,11 +94,11 @@ git push
 
 <p>This page is viewable at <a href="http://0.0.0.0:3000/pages/home">http://0.0.0.0:3000/pages/home</a>.  To edit it, navigate to <code>pinteresting/app/views/pages/home.html.erb</code>.  You can then make any edits you want to the page contents.</p>
 
-<h2>Setting the Root Path</h2>
+<h3>Setting the Root Path</h3>
 
 <p>Find routes in the file <code>config/routes.rb</code>.  Currently, this says that there is a page at http://0.0.0.0:3000/pages/home.  To make the default landing page point here, chance the second line of the routes file to <code>root pages#home</code>.</p>
 
-<h2>Creating More Pages</h2>
+<h3>Creating More Pages</h3>
 
 <p>There are three steps to creating a new page for your app (in this case an about page):</p>
 
@@ -113,7 +115,7 @@ end
 <pre><code>get "about" =&gt; "pages#about"
 </code></pre>
 
-<h2>Embedded Ruby</h2>
+<h3>Embedded Ruby</h3>
 
 <p>Normally you would create a link in html like so:</p>
 
@@ -132,7 +134,7 @@ end
 
 <p>This calls the Ruby function <code>link_to</code> with two arguments.\</p>
 
-<h2>Creating Navigation Links</h2>
+<h3>Creating Navigation Links</h3>
 
 <p>The line</p>
 
@@ -155,3 +157,74 @@ end
 </code></pre>
 
 <p>This will add the given links to every page in our app.</p>
+
+<h2>Bootstrap</h2>
+
+<h3>Installing Bootstrap</h3>
+
+<p>Gems are a simple way to include extensions to Ruby.  They are stored in your <code>Gemfile</code>.  Groups are used to tell which gems should be active when (eg development vs deployment).</p>
+
+<p><a href="http://getbootstrap.com/">Bootstrap</a> is a gem for making a nice front-end with icons, menus, navbars, etc.  Bootstrap was recently updated, so we have to tell the Gemfile to get a particular version from Github.  In <code>Gemfile</code>, add </p>
+
+<pre><code>gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+</code></pre>
+
+<p>Then at the top of the directory, run</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>to install all the gems in the <code>Gemfile</code> (and their dependencies).</p>
+
+<p>To get bootstrap running, create a new file <code>app/assets/stylesheets/bootstrap_and_customization.css.scss</code>.  (The name is actually not important.  The file <code>applications.css</code> automatically combines all the files in the <code>stylesheets</code> directory to run in your app.)</p>
+
+<p><code>.scss</code> files are precompilers for CSS.</p>
+
+<p>To the new <code>.scss</code> file you just created, add the line</p>
+
+<pre><code>@import 'bootstrap;'
+</code></pre>
+
+<p>When you restart your server (as you'll need to do every time you add a new gem), you'll notice the much nicer formatting for your app pages.</p>
+
+<h3>Adding Bootstrap Elements</h3>
+
+<h4>Containers</h4>
+
+<p>To align our page contents more nicely, we go to <code>app/views/layouts/application.html.erb</code>.  Recall that this is sort of the master template for all of our app pages.  The content of all the pages is stored in the variable <code>yield</code>, so to align our content, modify the file as so:</p>
+
+<pre><code>&lt;div class="container"&gt;
+        &lt;%= yield %&gt;    
+&lt;/div&gt;
+</code></pre>
+
+<h4>Adding a Navbar</h4>
+
+<p>We can just copy the default navbar code from Bootstrap.  However, it is cleaner to create a file <code>apps/view/layouts/_header.html.erb</code>.  This is called a <em>partial</em>.   To then link to this partial, add the line</p>
+
+<pre><code>&lt;%= render 'layouts/header' %&gt;
+</code></pre>
+
+<p>at the desired location in your <code>applications.html.erb</code>.  Then add the desired navbar html from the Bootstrap site.  To get the dropdown menu to work, add bootstrap to your <code>app/assets/javascripts/application.js</code>:</p>
+
+<pre><code>//= require bootstrap
+</code></pre>
+
+<h4>Viewports</h4>
+
+<p>To get your app to look right on mobile devices, add</p>
+
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</code></pre>
+
+<p>inside the <code>&lt;head&gt;</code> tags in your <code>/app/views/layout/application.html.erb</code>.</p>
+
+<h4>Jumbotron</h4>
+
+<p>To get the Jumbotron look on your homepage, wrap the header and other content you want is <div> tags like so:</p>
+
+<pre><code>&lt;div class="jumbotron"&gt;
+    &lt;h1&gt;Welcome to my app!&lt;/h1&gt;
+    &lt;p&gt;Sign up &lt;%=  link_to "here", "#" %&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>

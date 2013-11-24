@@ -69,7 +69,9 @@ The typical workflow is as follows:  After making some changes to our files and 
 	git commit -m "Message"
 	git push
 
-## Creating Your Homepage
+## Creating Pages
+
+### Creating Your Homepage
 
 Navigate to your `pinteresting` folder and start the server with
 
@@ -81,11 +83,11 @@ You can see the result at [http://0.0.0.0:3000](http://0.0.0.0:3000).  To make a
 	
 This page is viewable at [http://0.0.0.0:3000/pages/home](http://0.0.0.0:3000/pages/home).  To edit it, navigate to `pinteresting/app/views/pages/home.html.erb`.  You can then make any edits you want to the page contents.
 
-## Setting the Root Path
+### Setting the Root Path
 
 Find routes in the file `config/routes.rb`.  Currently, this says that there is a page at http://0.0.0.0:3000/pages/home.  To make the default landing page point here, chance the second line of the routes file to `root pages#home`.
 
-## Creating More Pages
+### Creating More Pages
 
 There are three steps to creating a new page for your app (in this case an about page):
 
@@ -100,7 +102,7 @@ Third, add a route for this new page.  In `config/routes.rb`, add this line:
 
 	get "about" => "pages#about"
 	
-## Embedded Ruby
+### Embedded Ruby
 
 Normally you would create a link in html like so:
 
@@ -116,7 +118,7 @@ To add make a link, for example:
 
 This calls the Ruby function `link_to` with two arguments.\
 
-## Creating Navigation Links
+### Creating Navigation Links
 
 The line
 	
@@ -136,4 +138,67 @@ In the body of this file, we can add
 	<%= link_to "About Us", about_path %>
 	
 This will add the given links to every page in our app.
+
+## Bootstrap
+
+### Installing Bootstrap
+
+Gems are a simple way to include extensions to Ruby.  They are stored in your `Gemfile`.  Groups are used to tell which gems should be active when (eg development vs deployment).
+
+[Bootstrap](http://getbootstrap.com/) is a gem for making a nice front-end with icons, menus, navbars, etc.  Bootstrap was recently updated, so we have to tell the Gemfile to get a particular version from Github.  In `Gemfile`, add 
+
+	gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 	
+Then at the top of the directory, run
+
+	bundle install
+	
+to install all the gems in the `Gemfile` (and their dependencies).
+
+To get bootstrap running, create a new file `app/assets/stylesheets/bootstrap_and_customization.css.scss`.  (The name is actually not important.  The file `applications.css` automatically combines all the files in the `stylesheets` directory to run in your app.)
+
+`.scss` files are precompilers for CSS.
+
+To the new `.scss` file you just created, add the line
+
+	@import 'bootstrap;'
+	
+When you restart your server (as you'll need to do every time you add a new gem), you'll notice the much nicer formatting for your app pages.
+
+### Adding Bootstrap Elements
+
+#### Containers
+
+To align our page contents more nicely, we go to `app/views/layouts/application.html.erb`.  Recall that this is sort of the master template for all of our app pages.  The content of all the pages is stored in the variable `yield`, so to align our content, modify the file as so:
+
+	<div class="container">
+			<%= yield %>	
+	</div>
+	
+#### Adding a Navbar
+
+We can just copy the default navbar code from Bootstrap.  However, it is cleaner to create a file `apps/view/layouts/_header.html.erb`.  This is called a *partial*.   To then link to this partial, add the line
+
+	<%= render 'layouts/header' %>
+	
+at the desired location in your `applications.html.erb`.  Then add the desired navbar html from the Bootstrap site.  To get the dropdown menu to work, add bootstrap to your `app/assets/javascripts/application.js`:
+
+	//= require bootstrap
+
+#### Viewports
+
+To get your app to look right on mobile devices, add
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+inside the `<head>` tags in your `/app/views/layout/application.html.erb`.
+	
+#### Jumbotron
+
+To get the Jumbotron look on your homepage, wrap the header and other content you want is <div> tags like so:
+	
+	<div class="jumbotron">
+		<h1>Welcome to my app!</h1>
+		<p>Sign up <%=	link_to "here", "#" %>.</p>
+	</div>
+
