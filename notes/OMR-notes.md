@@ -288,3 +288,28 @@ You'll need to set the `font-family` variable with your new font at the beginnin
 
 	$font-family-sans-serif: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	
+## Heroku
+
+[Heroku](https://www.heroku.com/) is a free service for hosting your app. First make an account and then download and install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+
+Then run `heroku login`.  Your ssh key should be added, but if not run `heroku keys:add`.
+
+### Databases
+
+Heroku uses postgres as its database, but have been using sqlite in development.  So, we need to add the following to our Gemfile:
+
+	group :development, :test do
+		# Use sqlite3 as the database for Active Record
+		gem 'sqlite3'
+	end
+
+	group :production do
+		gem 'pq'
+		gem 'rails_12factor'
+	end
+
+The run `bundle install`.  If you have problems installing `pg`, run `bundle install --without production` to skip the local installation.  
+
+### Pushing to Heroku
+
+Run `heroku create` in you `pinteresting` folder.
