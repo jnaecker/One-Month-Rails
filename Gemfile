@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 1.2'
 # Bootstrap gem
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
+# Devise gem for user profiles and login
+gem 'devise', '~> 3.1.0.rc2'
+
 # Use SQLite as database for development and testing
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
